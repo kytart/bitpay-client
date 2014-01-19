@@ -1,5 +1,5 @@
 {
-    "name": "bitpay/php-client",
+    "name": "sescandell/bitpay-client",
     "description": "BitPay PHP Client",
     "version": "0.0.1",
     "keywords": ["bitpay", "bitcoin"],
