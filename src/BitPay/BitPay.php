@@ -1,7 +1,7 @@
 <?php namespace BitPay;
 
-use BitPay\Hash;
 use BitPay\Request\Curl as Request;
+use BitPay\Encrypter\EncrypterInterface;
 
 class BitPay
 {
@@ -18,10 +18,10 @@ class BitPay
     protected $request;
 
     /**
-     * Hasher dependency
-     * @var Bitpay\Hasher
+     * Encrypter dependency
+     * @var EncrypterInterface
      */
-    protected $hasher;
+    protected $encrypter;
 
     /**
      * Default options
@@ -39,16 +39,17 @@ class BitPay
     );
 
     /**
-     * Construct class. Set Request and Hash service.
+     * Construct class. Set Request and Encrypter service.
+     *
      * @param Request $request
-     * @param Hash $hasher
+     * @param EncrypterInterface $encrypter
      * @param string $key API key
      * @param array $options Default Options
      */
-    public function __construct(Request $request, Hash $hasher, $key = null, $options = array())
+    public function __construct(Request $request, EncrypterInterface $encrypter, $key = null, $options = array())
     {
         $this->request = $request;
-        $this->hasher = $hasher;
+        $this->encrypter = $encrypter;
         $this->setApiKey($key);
         $this->setOptions($options);
     }
@@ -82,6 +83,7 @@ class BitPay
     public function getInvoice($orderID)
     {
         $response = $this->request->get('invoice/' . $orderID, $this->apiKey);
+
         return (object) $response;
     }
 
@@ -107,10 +109,7 @@ class BitPay
         $pos = array('posData' => $posData);
 
         if ($options['verifyPos']) {
-            $pos['hash'] = $this->hasher->encrypt(
-                serialize($posData),
-                $this->apiKey
-            );
+            $pos['hash'] = $this->encrypter->encrypt(serialize($posData));
         }
 
         $options['posData'] = json_encode($pos);
@@ -173,7 +172,7 @@ class BitPay
         $posData = json_decode($json['posData'], true);
 
         if ($this->options['verifyPos']) {
-            $hashCheck = $this->hasher->encrypt(serialize($posData['posData']), $this->apiKey);
+            $encryptCheck = $this->encrypter->encrypt(serialize($posData['posData']));
             if ($posData['hash'] != $hashCheck) {
                 return 'authentication failed (bad hash)';
             }

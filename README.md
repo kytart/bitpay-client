@@ -28,7 +28,7 @@ require 'vendor/autoload.php';
 
 $bitPay = new BitPay\BitPay(
   new BitPay\Request\Curl,
-  new BitPay\Hash,
+  new BitPay\Encrypter\Hash('API-KEY'),
   'API-KEY',
   $options // array, optional
 );
@@ -73,7 +73,7 @@ require 'vendor/autoload.php';
 
 $bitPay = new BitPay\BitPay(
   new BitPay\Request\Curl,
-  new BitPay\Hash,
+  new BitPay\Encrypter\Hash('API-KEY'),
   'API-KEY',
   $options // array, optional
 );
@@ -113,3 +113,4 @@ Let us know! Send a pull request or a patch. Questions? Ask! We're here to help.
 
 ## Authors
 * Fede Isas
+* Escandell Stéphane

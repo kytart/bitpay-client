@@ -1,10 +1,12 @@
 <?php namespace BitPay\Tests;
 
 use \BitPay\BitPay;
-use \BitPay\Hash;
+use \BitPay\Encrypter\Hash;
 use \BitPay\Request\Curl;
 use \PHPUnit_Framework_TestCase;
 use \Mockery as m;
+
+// TODO: replace "Hash instance" by Mock object
 
 class BitPayTest extends PHPUnit_Framework_TestCase
 {
