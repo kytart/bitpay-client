@@ -177,7 +177,7 @@ class BitPay
 
         if ($this->options['verifyPos']) {
             $encryptCheck = $this->encrypter->encrypt(serialize($posData['posData']));
-            if ($posData['hash'] != $hashCheck) {
+            if ($posData['hash'] != $encryptCheck) {
                 return 'authentication failed (bad hash)';
             }
         }

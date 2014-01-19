@@ -4,6 +4,12 @@ namespace BitPay;
 
 abstract class Request
 {
+    /**
+     * Bitpay API version used
+     *
+     * @var string
+     */
+    const API_VERSION = "0.3.1";
 
     /**
      * BitPay URL Host
