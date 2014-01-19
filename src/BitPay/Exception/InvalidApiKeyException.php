@@ -1,4 +1,6 @@
-<?php namespace BitPay\Exception;
+<?php
+
+namespace BitPay\Exception;
 
 class InvalidApiKeyException extends \Exception
 {

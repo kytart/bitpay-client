@@ -1,4 +1,6 @@
-<?php namespace BitPay\Request;
+<?php
+
+namespace BitPay\Request;
 
 use BitPay\Request;
 use BitPay\Exception\CurlRequestException;
@@ -93,6 +95,7 @@ class Curl extends Request
             }
         }
         curl_close($curl);
+
         return $response;
     }
 }

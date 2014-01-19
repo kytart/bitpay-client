@@ -1,4 +1,6 @@
-<?php namespace BitPay;
+<?php
+
+namespace BitPay;
 
 use BitPay\Request\Curl as Request;
 use BitPay\Encrypter\EncrypterInterface;
@@ -41,10 +43,10 @@ class BitPay
     /**
      * Construct class. Set Request and Encrypter service.
      *
-     * @param Request $request
+     * @param Request            $request
      * @param EncrypterInterface $encrypter
-     * @param string $key API key
-     * @param array $options Default Options
+     * @param string             $key       API key
+     * @param array              $options   Default Options
      */
     public function __construct(Request $request, EncrypterInterface $encrypter, $key = null, $options = array())
     {
@@ -61,6 +63,7 @@ class BitPay
     public function setApiKey($key)
     {
         $this->apiKey = $key;
+
         return $this;
     }
 
@@ -71,6 +74,7 @@ class BitPay
     public function setOptions($options)
     {
         $this->options = array_merge($this->options, $options);
+
         return $this;
     }
 
@@ -91,7 +95,7 @@ class BitPay
      * Create BitPay Invoice
      * @param int $orderId Used to display an orderID to the buyer.
      *        In the account summary view, this value is used to identify a ledger entry if present.
-     * @param float $price By default, price is expressed in the currency you set options.
+     * @param float $price   By default, price is expressed in the currency you set options.
      * @param array $posData This field is included in status updates or requests to get an invoice.
      *        It is intended to be used by the merchant to uniquely identify an order associated with
      *        an invoice in their system. Aside from that, Bit-Pay does not use the data in this field.
@@ -154,7 +158,7 @@ class BitPay
 
     /**
      * Call from your notification handler to convert $_POST data to an object containing invoice data
-     * @param string $_POST data
+     * @param  string $_POST data
      * @return object Invoice
      */
     public function verifyNotification($postData)

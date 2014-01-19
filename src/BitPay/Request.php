@@ -1,4 +1,6 @@
-<?php namespace BitPay;
+<?php
+
+namespace BitPay;
 
 abstract class Request
 {

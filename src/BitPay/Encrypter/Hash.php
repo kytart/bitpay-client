@@ -22,7 +22,7 @@ class Hash implements EncrypterInterface
     /**
      * Hash the data to send using sha256
      *
-     * @param array $data
+     * @param  array  $data
      * @return string Hashed data
      */
     public function encrypt($data)
