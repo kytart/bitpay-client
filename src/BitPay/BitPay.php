@@ -99,13 +99,12 @@ class BitPay
 
     /**
      * Fetch Invoice information
-     * @param string $orderID Used to display an orderID to the buyer. In the account summary view,
-     *        this value is used to identify a ledger entry if present.
+     * @param string $id
      * @return \stdClass Invoice data
      */
-    public function getInvoice($orderID)
+    public function getInvoice($id)
     {
-        $response = $this->request->get('invoice/' . $orderID, $this->apiKey);
+        $response = $this->request->get('invoice/' . $id, $this->apiKey);
 
         return (object) $response;
     }
@@ -123,7 +122,7 @@ class BitPay
      *        redirectURL, apiKey, currency, physical, fullNotifications, transactionSpeed, buyerName,
      *        buyerAddress1, buyerAddress2, buyerCity, buyerState, buyerZip, buyerEmail, buyerPhone
      * @see https://bitpay.com/bitcoin-payment-gateway-api
-     * @return object Response
+     * @return \stdClass Response
      */
     public function createInvoice($orderId, $price, $posData = array(), $options = array())
     {
@@ -178,7 +177,7 @@ class BitPay
     /**
      * Call from your notification handler to convert $_POST data to an object containing invoice data
      * @param  string $_POST data
-     * @return object Invoice
+     * @return \stdClass Invoice
      */
     public function verifyNotification($postData)
     {
