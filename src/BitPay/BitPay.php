@@ -59,6 +59,8 @@ class BitPay
     /**
      * Set the API Key. Chainable.
      * @param string $key
+     *
+     * @return \BitPay\BitPay
      */
     public function setApiKey($key)
     {
@@ -70,6 +72,8 @@ class BitPay
     /**
      * Set API options. Chainable.
      * @param array $options
+     *
+     * @return \BitPay\BitPay
      */
     public function setOptions($options)
     {
@@ -79,10 +83,25 @@ class BitPay
     }
 
     /**
+     * Set API option $name to $value. Chainable.
+     *
+     * @param string $name
+     * @param mixed $value
+     *
+     * @return \BitPay\BitPay
+     */
+    public function setOption($name, $value)
+    {
+        $this->options[$name] = $value;
+
+        return $this;
+    }
+
+    /**
      * Fetch Invoice information
      * @param string $orderID Used to display an orderID to the buyer. In the account summary view,
      *        this value is used to identify a ledger entry if present.
-     * @return array Invoice data
+     * @return \stdClass Invoice data
      */
     public function getInvoice($orderID)
     {
