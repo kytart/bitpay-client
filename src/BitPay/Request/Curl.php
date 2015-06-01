@@ -13,13 +13,13 @@ class Curl extends Request
     *
     * @throws CurlRequestException
     */
-    public function __construct()
+    public function __construct($test)
     {
         if (!function_exists('curl_version')) {
             throw new CurlRequestException('Curl extension is either not enabled or not installed');
         }
 
-        parent::__construct();
+        parent::__construct($test);
     }
 
     public function get($endpoint, $apiKey = null)

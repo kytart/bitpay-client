@@ -11,10 +11,8 @@ abstract class Request
      */
     const API_VERSION = "0.3.1";
 
-    /**
-     * BitPay URL Host
-     */
-    const HOST = "https://bitpay.com/api/";
+	const HOST_TEST = "https://test.bitpay.com/api/";
+	const HOST_LIVE = "https://bitpay.com/api/";
 
     /**
      * Amount of time (in seconds) to wait for the BitPay server to respond
@@ -42,18 +40,22 @@ abstract class Request
      * Create a new instance
      *
      */
-    public function __construct()
+    public function __construct($test)
     {
-        $this->setHost();
+        $this->setHost($test);
     }
 
     /**
      * Set the host that the request will be sent too
      *
      */
-    public function setHost()
+    public function setHost($test)
     {
-        $this->host = self::HOST;
+        if($test) {
+	        $this->host = self::HOST_TEST;
+        } else {
+	        $this->host = self::HOST_LIVE;
+        }
     }
 
     /**
