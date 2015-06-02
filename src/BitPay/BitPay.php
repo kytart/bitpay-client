@@ -2,7 +2,6 @@
 
 namespace BitPay;
 
-use BitPay\Request\Curl as Request;
 use BitPay\Encrypter\EncrypterInterface;
 
 class BitPay
@@ -15,7 +14,7 @@ class BitPay
 
     /**
      * Request dependency
-     * @var BitPay\Request
+     * @var Request
      */
     protected $request;
 
